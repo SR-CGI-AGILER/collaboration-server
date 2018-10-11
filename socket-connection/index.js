@@ -1,10 +1,15 @@
-const app = require('express')();
-const http = require('http').Server(app);
 
-app.get('/', function(req,res){
-    res.sendFile('../index.html');
-});
 
-http.listen(3000, function(){
-    console.log("listening on port 3000");
+
+function instantiateSocket(io){
+io.on('connection', function(socket){
+    console.log(socket.id);
+    console.log(socket.adapter);
+    socket.on('chat message',function(msg){
+        console.log('message: '+msg);
+    socket.broadcast.emit('chat message',msg);
+    // console.log('user connected');){}
 });
+});
+}  
+module.exports = { instantiateSocket }  
