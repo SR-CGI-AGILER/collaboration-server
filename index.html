@@ -19,10 +19,12 @@
   $(function () {
     const socket = io();
     $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
+      // socket.emit('chat message', $('#m').val());
+      // $('#m').val('');
+      // return false;
+      // socket.emit('join',roomname);
     });
+    
     socket.on('chat message',function(msg){
       $('#messages').append($('<li>').text(msg));
     });
@@ -33,5 +35,6 @@
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+    <button onClick = "joinroom">Click</button>
   </body>
 </html>

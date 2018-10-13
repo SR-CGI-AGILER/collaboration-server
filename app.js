@@ -7,11 +7,15 @@ const path = require('path');
 
 socketserver.instantiateSocket(io);
 
-app.get('/', function(req,res){
-    res.sendFile(path.resolve('./index.html'));
+// app.get('/', function(req,res){
+//     res.sendFile(path.resolve('./index.html'));
+// });
+
+app.post('/chat-room/:roomname', function(req,res){
+    socketserver.joinroom(req.params.roomname);
 });
 
 http.listen(port, function(){
-    console.log("listening on port"+ port);
+    console.log("listening on port: "+ port);
 });
 
