@@ -4,6 +4,8 @@ const path = require('path')
 const io = require('socket.io')(http);
 const socketServer= require('./socket-connection/index.js');
 const port = process.env.PORT || 3000;
+
+
 socketServer.instantiateSocket(io);
 
 // app.use(function(req, res, next) {
@@ -18,7 +20,8 @@ socketServer.instantiateSocket(io);
 // });
 
 app.post('/chat-room/:roomname', function(req,res){
-    socketserver.joinroom(req.params.roomname);
+    socketServer.joinroom(req.params.roomname);
+    // res.send({status: 200})
 });
 
 http.listen(port, function(){
